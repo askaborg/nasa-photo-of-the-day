@@ -3,7 +3,7 @@ import axios from "axios"
 import DisplayApod from "./DisplayApod"
 
 function GetAndDisplayApod() {
-    // const apodData =
+    // const localApodData =
     // {
     // "copyright":"Alan FriedmanAverted Imagination",
     // "date":"2012-03-14",
@@ -14,15 +14,20 @@ function GetAndDisplayApod() {
     // "title":"Angry Sun Erupting",
     // "url":"https://apod.nasa.gov/apod/image/1203/angrysun_friedman_960.jpg"
     // }
-    const [apodData, setApodData] = useState([]) 
+    const [apodData, setApodData] = useState([])
+    const [apodError, setApodError] = useState([])
+
     useEffect (() => {
         axios
-            .get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2012-03-14')
+            .get('https://api.nasa.govZZZ/planetary/apod?api_key=DEMO_KEY&date=2012-03-14')
             .then(responseApod => setApodData(responseApod.data))
-            .catch(errorApod => console.log(errorApod))
+            .catch(errorApod => {
+                console.log('getError',errorApod)
+                setApodError(errorApod)
+            })
         }, [])
 
-    return <DisplayApod apodData={apodData} />
+    return <div><DisplayApod apodData={apodData} apodError={apodError} /></div>
 }
 
 export default GetAndDisplayApod
