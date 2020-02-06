@@ -8,7 +8,7 @@ function GetAndDisplayApod() {
 
     useEffect (() => {
         axios
-            .get('https://api.nasa.govZZZ/planetary/apod?api_key=DEMO_KEY&date=2012-03-14')
+            .get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2012-03-14')
             .then(responseApod => setApodData(responseApod.data))
             .catch(errorApod => setApodError(errorApod))
         }, [])
